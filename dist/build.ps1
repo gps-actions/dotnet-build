@@ -18,18 +18,16 @@ try {
         # & pwsh -NoProfile -ExecutionPolicy unrestricted `
         #     -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) $parameters" 
 
-        $env:PATH=""
+        & apt install wget
+        & wget "https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
+        & dpkg -i packages-microsoft-prod.deb
+        Remove-Item packages-microsoft-prod.deb
 
-        $env:DOTNET_INSTALL_DIR="/dotnet"
-        Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile ./dotnet-install.ps1 -Verbose
-
-        . ./dotnet-install.ps1 -Channel 6.0 -Quality preview -InstallDir $env:DOTNET_INSTALL_DIR -Architecture x64 -Verbose
-
-        if($LASTEXITCODE -ne 0){
-            throw "Powershell returned $LASTEXITCODE installing dotnet.";
-        }
-
-        $env:PATH += ':./dotnet'
+        apt-get update;
+        apt-get install -y apt-transport-https;
+        apt-get update;
+        apt search dotnet-sdk-6.0;
+        apt-get install -y dotnet-sdk-6.0;
 
         $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 
