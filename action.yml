@@ -23,4 +23,9 @@ outputs:
 
 runs:
   using: 'docker'
-  main: 'dist/build.ps1'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.build-root-path }}
+    - ${{ inputs.build-configuration }}
+    - ${{ inputs.build-platform }}
+    - ${{ inputs.build-restore }}
