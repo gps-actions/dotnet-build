@@ -37,7 +37,7 @@ try {
 
         Set-Location $rootPath
 
-        & $dotnet build --configuration $configuration --arch $platform
+        & $dotnet build --configuration $configuration /p:Platform:"$platform" 
     }
     else {
         & ls -al
