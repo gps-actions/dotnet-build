@@ -9,4 +9,8 @@ chmod +x /build.ps1
 
 pwsh /build.ps1
 
-echo "Executed powershell."
+status=$?
+
+export build-result=$status
+
+return $status
