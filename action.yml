@@ -3,22 +3,26 @@ description: 'Executes a build with Dotnet CLI'
 author: 'The Sharp Ninja'
 branding:
   color: blue
-  icon: dotnet
+  icon: activity
 inputs:
   build-root-path:
+    default: "${{ github.workspace }}"
     required: true
     description: 'Folder location of where to find the solution or project to be built.'
   build-configuration: # Defaults to Release
+    default: "Release"
     description: 'Build configuration to perform.'
     required: false
   build-platform: # Defaults to Any CPU
+    default: "anycpu"
     description: 'Specify the cpu platforms to target.'
     required: false
   build-restore: # Defaults to true
+    default: "true"
     description: 'Specify whether to restore during the build.'
     required: false
 outputs:
-  build-result: 
+  build-result:
     description: 'Returns true if build succeeds.'
 
 runs:
