@@ -20,15 +20,15 @@ try {
 
         & apt-get update;
         & apt-get upgrade -y;
-        Invoke-WebRequest "https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb" -OutFile packages-microsoft-prod.deb
+        Invoke-WebRequest "https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb" -OutFile packages-microsoft-prod.deb
         & dpkg -i packages-microsoft-prod.deb
         Remove-Item packages-microsoft-prod.deb
 
         & apt-get update;
         & apt-get install -y apt-transport-https;
         & apt-get update;
-        & apt search dotnet-sdk-6.0;
-        & apt-get install -y dotnet-sdk-6.0;
+        & apt search dotnet-sdk-5.0;
+        & apt-get install -y dotnet-sdk-5.0;
 
         $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 
