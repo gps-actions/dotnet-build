@@ -5,7 +5,5 @@ FROM mcr.microsoft.com/powershell
 COPY dist/build.ps1 /build.ps1
 COPY dist/entrypoint.sh /entrypoint.sh
 
-CMD [ "apt install curl git" ]
-
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]
