@@ -1,2 +1,2 @@
-# dotnet-nuild
+# dotnet-build
 Build with Dotnet CLI
