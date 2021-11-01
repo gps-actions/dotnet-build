@@ -18,7 +18,7 @@ try {
         # & pwsh -NoProfile -ExecutionPolicy unrestricted `
         #     -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) $parameters" 
 
-        Write-Output "`$env:path is null: $($null -eq $env:path)"
+        $env:PATH=""
 
         $env:DOTNET_INSTALL_DIR="/dotnet"
         Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile ./dotnet-install.ps1 -Verbose
