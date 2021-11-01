@@ -20,6 +20,7 @@ try {
 
         & apt-get update -qq > /dev/null;
         & apt-get upgrade -y -qq > /dev/null;
+        & apt-get install apt-utils -y -qq > /dev/null;
         Invoke-WebRequest "https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb" -OutFile packages-microsoft-prod.deb
         & apt install ./packages-microsoft-prod.deb -y -qq > /dev/null
         Remove-Item packages-microsoft-prod.deb
@@ -36,7 +37,7 @@ try {
 
         Set-Location $rootPath
 
-        dotnet build --configuration $configuration --platform $platform
+        & $dotnet build --configuration $configuration --arch $platform
     }
     else {
         & ls -al
