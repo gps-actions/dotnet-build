@@ -39,7 +39,7 @@ try {
 
         & ls -al
 
-        & $dotnet build --configuration $configuration /p:Platform:"$platform"
+        & $dotnet build --configuration $configuration 
 
         if($LASTEXITCODE -ne 0){
             throw "Build failed. `$LASTEXITCODE is $LASTEXITCODE."
