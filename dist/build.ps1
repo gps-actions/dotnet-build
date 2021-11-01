@@ -12,10 +12,10 @@ Write-Host "`$restore: $restore"
 
 if(Test-Path $rootPath) {
     #download Dotnet
-    Invoke-WebRequest https://dot.net/v1/dotnet-install.sh -OutFile ./dotnet-install.sh
-    & chmod +x dotnet-install.sh
+    Invoke-WebRequest https://dot.net/v1/dotnet-install.ps1 -OutFile ./dotnet-install.ps1
+    & chmod +x dotnet-install.ps1
 
-    /bin/bash ./dotnet-install.sh --channel 6.0.1xx --quality preview --install-dir ./dotnet --os linux
+    /bin/bash ./dotnet-install.ps1 -channel 6.0.1xx -quality preview -install-dir ./dotnet -os linux
 
     $env:PATH += ":./dotnet"
 
