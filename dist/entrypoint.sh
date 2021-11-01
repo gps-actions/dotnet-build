@@ -13,4 +13,4 @@ status=$?
 
 echo "Powershell exited with $status"
 
-echo "::set-output build-result=content::$status"
+echo "::set-output name=build-result::$status"
