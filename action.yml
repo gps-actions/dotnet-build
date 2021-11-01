@@ -1,0 +1,26 @@
+name: 'dotnet-build'
+description: 'Executes a build with Dotnet CLI'
+author: 'The Sharp Ninja'
+branding:
+  color: blue
+  icon: dotnet
+inputs:
+  build-root-path:
+    required: true
+    description: 'Folder location of where to find the solution or project to be built.'
+  build-configuration: # Defaults to Release
+    description: 'Build configuration to perform.'
+    required: false
+  build-platform: # Defaults to Any CPU
+    description: 'Specify the cpu platforms to target.'
+    required: false
+  build-restore: # Defaults to true
+    description: 'Specify whether to restore during the build.'
+    required: false
+outputs:
+  build-result: 
+    description: 'Returns true if build succeeds.'
+
+runs:
+  using: 'powershell'
+  main: 'dist/build.ps1'
