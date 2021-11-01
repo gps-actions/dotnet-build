@@ -3,7 +3,7 @@
 $rootPath = $env:BUILD_ROOT_PATH
 $configuration = $env:BUILD_CONFIGURATION
 $platform = $env:BUILD_PLATFORM
-[switch]$restore = [System.Conver]::ToBoolean($env:BUILD_RESTORE)
+[switch]$restore = [System.Convert]::ToBoolean($env:BUILD_RESTORE)
 
 Write-Host "`$rootPath: $rootPath"
 Write-Host "`$configuration: $configuration"
