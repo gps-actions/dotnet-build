@@ -18,23 +18,25 @@ try {
         # & pwsh -NoProfile -ExecutionPolicy unrestricted `
         #     -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) $parameters" 
 
-        & apt-get update;
-        & apt-get upgrade -y;
+        & apt-get update -qq > /dev/null;
+        & apt-get upgrade -y -qq > /dev/null;
         Invoke-WebRequest "https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb" -OutFile packages-microsoft-prod.deb
-        & dpkg -i packages-microsoft-prod.deb
+        & apt install ./packages-microsoft-prod.deb -y -qq > /dev/null
         Remove-Item packages-microsoft-prod.deb
 
-        & apt-get update;
-        & apt-get install -y apt-transport-https;
-        & apt-get update;
-        & apt search dotnet-sdk-5.0;
-        & apt-get install -y dotnet-sdk-5.0;
+        & apt-get update -qq > /dev/null;
+        & apt-get install -y apt-transport-https -qq > /dev/null;
+        & apt-get update -qq > /dev/null;
+        & apt search dotnet-sdk-5.0 -qq > /dev/null;
+        & apt-get install -y dotnet-sdk-5.0 -qq > /dev/null;
 
         $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 
-        Write-Host "${dotnet}"
+        Push-Location
 
-        & $dotnet --version
+        Set-Location $rootPath
+
+        dotnet build --configuration $configuration --platform $platform
     }
     else {
         & ls -al
