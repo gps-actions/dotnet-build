@@ -1,1 +1,3 @@
-echo 'Got here.'
+#!pwsh
+
+echo 'Powershell Hello'
