@@ -14,3 +14,8 @@ status=$?
 echo "Powershell exited with $status"
 
 echo "::set-output name=build-result::$status"
+
+if (($status != 0)); then
+  printf '%s\n' "Powershell failed" >&2  # write error message to stderr
+  exit $status                                  # or exit $test_result
+fi
