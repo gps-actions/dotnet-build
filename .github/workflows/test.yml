@@ -18,9 +18,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: gps-actions/dotnet-build@main
+        id: dotnet-build
         with:
            build-root-path: ./test
            build-configuration: Debug
            build-platform: x64
            build-restore: true
-           
+    
+      - name: Failed?
+        run: |
+          echo "build-result: ${{ steps.dotnet-build.outputs.build-result }}"
