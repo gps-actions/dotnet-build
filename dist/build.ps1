@@ -24,9 +24,11 @@ try {
 
         $env:PATH += ':./dotnet'
 
-        $dotnet = Get-Command dotnet
+        $dotnet = (Get-Command dotnet -ErrorAction Stop).Source
 
-        Write-Host "${dotnet.Source}"
+        Write-Host "${dotnet}"
+
+        & $dotnet --version
     }
     else {
         & ls -al
