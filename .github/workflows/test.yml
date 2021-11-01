@@ -19,7 +19,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: gps-actions/dotnet-build@main
         with:
-           build-root-path: .\test
+           build-root-path: ./test
            build-configuration: Debug
            build-platform: x64
            build-restore: true

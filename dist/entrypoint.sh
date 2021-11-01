@@ -11,6 +11,4 @@ pwsh /build.ps1
 
 status=$?
 
-export build-result=$status
-
-return $status
+export build_result=$status
