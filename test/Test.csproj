@@ -1,2 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <Output>Exe</Output>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
 </Project>
