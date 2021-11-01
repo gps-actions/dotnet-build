@@ -44,6 +44,18 @@ try {
         if($LASTEXITCODE -ne 0){
             throw "Build failed. `$LASTEXITCODE is $LASTEXITCODE."
         }
+
+        & $dotnet test --configuration $configuration --no-build
+
+        if ($LASTEXITCODE -ne 0) {
+            throw "Testing failed. `$LASTEXITCODE is $LASTEXITCODE."
+        }
+
+        & $dotnet publish --configuration $configuration /p:Platform="$platform"
+
+        if ($LASTEXITCODE -ne 0) {
+            throw "Publish failed. `$LASTEXITCODE is $LASTEXITCODE."
+        }
     }
     else {
         & ls -al
