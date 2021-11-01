@@ -37,7 +37,13 @@ try {
 
         Set-Location $rootPath
 
-        & $dotnet build --configuration $configuration /p:Platform:"$platform" 
+        & ls -al
+
+        & $dotnet build --configuration $configuration /p:Platform:"$platform"
+
+        if($LASTEXITCODE -ne 0){
+            throw "Build failed. `$LASTEXITCODE is $LASTEXITCODE."
+        }
     }
     else {
         & ls -al
