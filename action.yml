@@ -22,5 +22,5 @@ outputs:
     description: 'Returns true if build succeeds.'
 
 runs:
-  using: 'powershell'
+  using: 'docker'
   main: 'dist/build.ps1'
