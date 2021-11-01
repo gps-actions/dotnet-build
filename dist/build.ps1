@@ -18,9 +18,10 @@ try {
         # & pwsh -NoProfile -ExecutionPolicy unrestricted `
         #     -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) $parameters" 
 
+        $env:DOTNET_INSTALL_DIR="/dotnet"
         Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile ./dotnet-install.ps1 -Verbose
 
-        . ./dotnet-install.ps1 -Channel 6.0 -Quality preview -InstallDir ./dotnet -Architecture x64 -Verbose
+        . ./dotnet-install.ps1 -Channel 6.0 -Quality preview -InstallDir $env:DOTNET_INSTALL_DIR -Architecture x64 -Verbose
 
         if($LASTEXITCODE -ne 0){
             throw "Powershell returned $LASTEXITCODE installing dotnet.";
