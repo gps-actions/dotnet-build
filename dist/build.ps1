@@ -12,10 +12,11 @@ Write-Host "`$restore: $restore"
 
 if(Test-Path $rootPath) {
     #download Dotnet
-    Invoke-WebRequest https://dot.net/v1/dotnet-install.ps1 -OutFile ./dotnet-install.ps1
-    & chmod +x dotnet-install.ps1
-
-    /bin/bash ./dotnet-install.ps1 -channel 6.0.1xx -quality preview -install-dir ./dotnet -os linux
+    # Run a separate PowerShell process because the script calls exit, so it will end the current PowerShell session.
+    &powershell -NoProfile -ExecutionPolicy unrestricted `
+        -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; " + `
+            "&([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) " + `
+            "-Channel 6.0 -Quality prerelease -Os linux -InstallDir ./dotnet"
 
     $env:PATH += ":./dotnet"
 
