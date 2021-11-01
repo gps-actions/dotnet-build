@@ -40,6 +40,6 @@ try {
     }
 }
 catch {
-    Write-Error $error
+    $error
     throw $error
 }
