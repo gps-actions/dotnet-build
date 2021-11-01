@@ -40,7 +40,6 @@ try {
     }
 }
 catch {
-    $current = $_;
-    Write-Error $current
-    throw $current
+    Write-Error $error
+    throw $error
 }
