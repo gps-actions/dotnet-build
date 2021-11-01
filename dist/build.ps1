@@ -14,5 +14,6 @@ if(Test-Path $rootPath) {
 
 }
 else {
+    & ls -al
     throw "BUILD_ROOT_PATH ($rootPath) does not exist."
 }
