@@ -16,7 +16,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - uses: gps-actions/dotnet-build@main
         id: dotnet-build
         with:
@@ -24,7 +26,3 @@ jobs:
            build-configuration: Debug
            build-platform: x64
            build-restore: true
-    
-      - name: Failed?
-        run: |
-          echo "build-result: ${{ steps.dotnet-build.outputs.build-result }}"
