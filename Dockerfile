@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM alpine:3.10
+FROM mcr.microsoft.com/powershell
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY dist/build.ps1 /entrypoint.ps1
