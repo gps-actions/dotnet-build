@@ -11,7 +11,15 @@ Write-Host "`$platform: $platform"
 Write-Host "`$restore: $restore"
 
 if(Test-Path $rootPath) {
+    #download Dotnet
+    Invoke-WebRequest https://dot.net/v1/dotnet-install.sh -OutFile ./dotnet-install.sh
+    & chmod +x dotnet-install.sh
 
+    /bin/bash ./dotnet-install.sh --channel 6.0.1xx --quality preview --install-dir ./dotnet --os linux --runtime dotnet
+
+    $dotnet=Get-Command dotnet
+
+    Write-Host "${dotnet.Source}"
 }
 else {
     & ls -al
