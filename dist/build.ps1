@@ -46,7 +46,7 @@ try {
         }
 
         Push-Location
-        Set-Location bin/$Configuration
+        Set-Location bin/$Configuration/**/
 
         mkdir /artifacts
 
@@ -69,7 +69,7 @@ try {
         }
 
         Push-Location
-        Set-Location bin/$Configuration/$platform/publish
+        Set-Location bin/$platform/$Configuration/**/publish/
 
         Get-ChildItem -Recurse `
         | Compress-Archive -DestinationPath "/artifacts/Publish-$Configuration-$Platform-$timestamp.zip" -Verbose
