@@ -50,7 +50,7 @@ try {
 
         mkdir /artifacts
 
-        $timestamp = [System.DateTime]::Now.ToString('g').Replace(' ', '_');
+        $timestamp = [System.DateTime]::Now.ToString('g').Replace(' ', '_').Replace('/', '-').Replace('\', '-');
         Get-ChildItem -Recurse `
             | Compress-Archive -DestinationPath "/artifacts/$Configuration-$timestamp.zip" -Verbose
 
