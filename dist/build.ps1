@@ -52,7 +52,7 @@ try {
 
         $timestamp = [System.DateTime]::Now.ToString('g').Replace(' ', '_');
         Get-ChildItem -Recurse `
-            | Compress-Archive -Path "/artifacts/$Configuration-$timestamp.zip" -Verbose
+            | Compress-Archive -DestinationPath "/artifacts/$Configuration-$timestamp.zip" -Verbose
 
         Pop-Location
 
@@ -72,7 +72,7 @@ try {
         Set-Location bin/$Configuration/$platform/publish
 
         Get-ChildItem -Recurse `
-        | Compress-Archive -Path "/artifacts/Publish-$Configuration-$Platform-$timestamp.zip" -Verbose
+        | Compress-Archive -DestinationPath "/artifacts/Publish-$Configuration-$Platform-$timestamp.zip" -Verbose
 
         Pop-Location
 
