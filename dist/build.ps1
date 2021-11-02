@@ -45,6 +45,17 @@ try {
             throw "Build failed. `$LASTEXITCODE is $LASTEXITCODE."
         }
 
+        Push-Location
+        Set-Location bin/$Configuration
+
+        mkdir /artifacts
+
+        $timestamp = [System.DateTime]::Now.ToString('g').Replace(' ', '_');
+        Get-ChildItem -Recurse `
+            | Compress-Archive -Path "/artifacts/$Configuration-$timestamp.zip" -Verbose
+
+        Pop-Location
+
         & $dotnet test --configuration $configuration --no-build
 
         if ($LASTEXITCODE -ne 0) {
@@ -56,6 +67,18 @@ try {
         if ($LASTEXITCODE -ne 0) {
             throw "Publish failed. `$LASTEXITCODE is $LASTEXITCODE."
         }
+
+        Push-Location
+        Set-Location bin/$Configuration/$platform/publish
+
+        Get-ChildItem -Recurse `
+        | Compress-Archive -Path "/artifacts/Publish-$Configuration-$Platform-$timestamp.zip" -Verbose
+
+        Pop-Location
+
+        & ls -al /artifacts
+
+        docker cp /artifacts .
     }
     else {
         & ls -al
