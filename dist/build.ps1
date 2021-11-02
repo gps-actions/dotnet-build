@@ -77,8 +77,6 @@ try {
         Pop-Location
 
         & ls -al /artifacts
-
-        docker cp /artifacts .
     }
     else {
         & ls -al

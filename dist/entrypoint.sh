@@ -9,13 +9,13 @@ chmod +x /build.ps1
 
 pwsh /build.ps1
 
-status=$?
+status=$(cat /etc/hostname)
 
 echo "Powershell exited with $status"
 
 echo "::set-output name=build-result::$status"
 
-if (($status != 0)); then
+if (($? != 0)); then
   printf '%s\n' "Powershell failed" >&2  # write error message to stderr
-  exit $status                                  # or exit $test_result
+  exit $?                                  # or exit $test_result
 fi

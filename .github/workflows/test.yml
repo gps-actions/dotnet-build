@@ -27,3 +27,6 @@ jobs:
            build-configuration: Debug
            build-platform: x64
            build-restore: true
+
+      - run: |
+          echo ${{ steps.dotnet-build.outputs.build-result }}
