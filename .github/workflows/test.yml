@@ -29,4 +29,6 @@ jobs:
            build-restore: true
 
       - run: |
-          echo ${{ steps.dotnet-build.outputs.build-result }}
+          id="${{ steps.dotnet-build.outputs.build-result }}"
+          docker cp $id:/artifacts ${{ github.workspace }}/artifacts
+          ls -al ${{ github.workspace }}/artifacts
